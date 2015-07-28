@@ -48,7 +48,7 @@ for string in result.splitlines():
 
 print result_indented
 
-winners_line = ">" + result_indented.splitlines()[-1]
+winners_line = "**Unofficial results**: " + result_indented.splitlines()[-1]
 
 okay_to_post = raw_input("Okay to post? ")
 if okay_to_post.lower() == "y":
