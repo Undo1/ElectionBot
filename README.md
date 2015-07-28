@@ -1,6 +1,8 @@
 # ElectionBot
 
-A bot to post results from Stack Exchange moderator elections to chatrooms.
+A bot to post results from Stack Exchange moderator elections to chatrooms:
+
+![](http://i.stack.imgur.com/bEkO6.png)
 
 ## Usage
 
