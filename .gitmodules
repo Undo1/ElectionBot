@@ -1,0 +1,3 @@
+[submodule "openstv"]
+	path = openstv
+	url = https://github.com/OpenTechStrategies/openstv
