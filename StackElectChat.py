@@ -26,16 +26,16 @@ logging.basicConfig(level=logging.CRITICAL)
 if 'ChatExchangeU' in os.environ:
     email = os.environ['ChatExchangeU']
 else:
-    email = raw_input("Email: ")
+    email = input("Email: ")
 if 'ChatExchangeP' in os.environ:
     password = os.environ['ChatExchangeP']
 else:
     password = getpass.getpass("Password: ")
 client = ChatExchange.chatexchange.Client('stackexchange.com', email, password)
 
-raw_input(bcolors.BOLD + bcolors.OKGREEN + "Connection good." + bcolors.ENDC + bcolors.BOLD + " [Enter] to proceed getting results for " + sys.argv[1] + " election #" + sys.argv[2] + "..." + bcolors.ENDC)
+input(bcolors.BOLD + bcolors.OKGREEN + "Connection good." + bcolors.ENDC + bcolors.BOLD + " [Enter] to proceed getting results for " + sys.argv[1] + " election #" + sys.argv[2] + "..." + bcolors.ENDC)
 
-urllib.urlretrieve ("http://" + sys.argv[1] + "/election/download-result/" + sys.argv[2], "votes.blt")
+urllib.request.urlretrieve("https://" + sys.argv[1] + "/election/download-result/" + sys.argv[2], "votes.blt")
 
 result = os.popen("python openstv/openstv/runElection.py MeekSTV votes.blt").read()
 
@@ -46,15 +46,15 @@ result_indented = ""
 for string in result.splitlines():
     result_indented = result_indented + "    " + string + "\n"
 
-print result_indented
+print(result_indented)
 
 winners_line = "**Unofficial results**: " + result_indented.splitlines()[-1]
 
-okay_to_post = raw_input("Okay to post? ")
-if okay_to_post.lower() == "y":
+okay_to_post = input("Okay to post? ")
+if okay_to_post.lower() == "" or okay_to_post.lower == "y":
     for room in sys.argv[3].split(","):
       sandbox = client.get_room(room)
       sandbox.send_message(winners_line)
       sandbox.send_message(result_indented, False)
 
-    time.sleep(40)
+    time.sleep(10)
